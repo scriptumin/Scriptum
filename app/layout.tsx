@@ -4,29 +4,46 @@ import Robo from "./app/components/Robo";
 
 export const metadata = {
 title: "Scriptum",
-description: "Quiet app builder – describe → choose → generate",
+description: "Quiet app builder — describe → choose → generate",
 };
 
 export default function RootLayout({ children }) {
 return (
 <html lang="en">
+<head />
 <body
 style={{
 margin: 0,
 fontFamily: "Inter, system-ui, -apple-system, sans-serif",
-background: "linear-gradient(135deg, #0b0c10, #1f2833)",
-color: "#e5e7eb",
-minHeight: "100vh",
 }}
 >
+<div
+style={{
+minHeight: "100vh",
+background: "#0b0c10",
+color: "#e5e7eb",
+}}
+>
+<div
+style={{
+maxWidth: "1180px",
+margin: "0 auto",
+padding: "28px 18px",
+}}
+>
+{/* Header */}
 <header
 style={{
 display: "flex",
 alignItems: "center",
-justifyContent: "center",
+justifyContent: "space-between",
+}}
+>
+<div
+style={{
+display: "flex",
+alignItems: "center",
 gap: "10px",
-padding: "20px",
-background: "#1f2833",
 }}
 >
 <div
@@ -34,24 +51,36 @@ style={{
 width: 12,
 height: 12,
 borderRadius: "999px",
-background: "#45a29e",
+background: "#a3e635",
 }}
 />
-<strong style={{ letterSpacing: 1.5, fontSize: "1.2rem" }}>
-Scriptum
-</strong>
-<span style={{ opacity: 0.6, fontSize: "0.9rem" }}>
+<strong style={{ letterSpacing: 1.3 }}>Scriptum</strong>
+<span style={{ opacity: 0.6, fontSize: 13 }}>
 quiet app builder
 </span>
+</div>
+<a
+href="https://scriptum.in"
+style={{
+opacity: 0.6,
+fontSize: 12,
+textDecoration: "none",
+color: "inherit",
+}}
+>
+scriptum.in
+</a>
 </header>
 
-<main style={{ maxWidth: 1180, margin: "0 auto", padding: "28px 18px" }}>
+{/* Main page content */}
 {children}
-</main>
+</div>
+</div>
 
-{/* 👇 Robo will show up on every page */}
+{/* 👇 Robo is here, always visible on every page */}
 <Robo />
 </body>
 </html>
 );
 }
+
