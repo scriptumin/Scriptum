@@ -1,12 +1,19 @@
 
 "use client";
 import { useState, useEffect } from "react";
-import "../robo.css";
+import { createClient } from "@supabase/supabase-js";
+import "./../robo.css";
+
+// Connect Supabase
+const supabase = createClient(
+process.env.NEXT_PUBLIC_SUPABASE_URL!,
+process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 const actions = [
-"jump", "wave", "dance", "sleep", "fly", "gym",
-"study", "cycle", "moonwalk", "spin", "stretch",
-"yoga", "salute", "dab", "shuffle", "robotWalk"
+"jump", "wave", "dance", "sleep", "fly", "gym", "study",
+"cycle", "moonwalk", "spin", "stretch", "yoga", "salute",
+"dab", "shuffle", "robotWalk"
 ];
 
 export default function Robo() {
@@ -14,24 +21,32 @@ const [currentAction, setCurrentAction] = useState("");
 const [menuOpen, setMenuOpen] = useState(false);
 const [visible, setVisible] = useState(true);
 
-// Pick a random action sometimes if idle
+// Save action to Supabase
+async function logAction(action: string) {
+const { data: { user } } = await supabase.auth.getUser();
+await supabase.from("robot_actions_log").insert([
+{
+user_id: user?.id || null,
+action_name: action,
+},
+]);
+}
+
+// Random idle action every 20s
 useEffect(() => {
 const interval = setInterval(() => {
-if (!menuOpen && Math.random() > 0.7) {
-const randomAction = actions[Math.floor(Math.random() * actions.length)];
-setCurrentAction(randomAction);
-setTimeout(() => setCurrentAction(""), 3000);
-}
-}, 8000); // every 8 seconds try something silly
+const random = actions[Math.floor(Math.random() * actions.length)];
+setCurrentAction(random);
+logAction(random); // track random action too
+setTimeout(() => setCurrentAction(""), 5000);
+}, 20000);
+
 return () => clearInterval(interval);
-}, [menuOpen]);
+}, []);
 
 if (!visible) {
 return (
-<button
-className="robo-toggle"
-onClick={() => setVisible(true)}
->
+<button className="robo-toggle" onClick={() => setVisible(true)}>
 🤖 Show Robo
 </button>
 );
@@ -39,6 +54,7 @@ onClick={() => setVisible(true)}
 
 return (
 <div className="robo-container">
+{/* The Robo */}
 <div
 className={`robo ${currentAction}`}
 onClick={() => setMenuOpen(!menuOpen)}
@@ -46,6 +62,7 @@ onClick={() => setMenuOpen(!menuOpen)}
 🤖
 </div>
 
+{/* Menu */}
 {menuOpen && (
 <div className="robo-menu">
 {actions.map((action) => (
@@ -54,17 +71,20 @@ key={action}
 className="robo-menu-item"
 onClick={() => {
 setCurrentAction(action);
-setTimeout(() => setCurrentAction(""), 3000); // reset after 3s
+logAction(action); // track user action
+setTimeout(() => setCurrentAction(""), 5000);
 }}
 >
 {action}
 </button>
 ))}
+
+{/* Hide option */}
 <button
 className="robo-menu-item hide"
 onClick={() => setVisible(false)}
 >
-Hide Robo 👋
+Hide Robo
 </button>
 </div>
 )}
