@@ -1,0 +1,54 @@
+
+/* robo.css */
+
+/* Container */
+.robo-container {
+position: fixed;
+bottom: 20px;
+right: 20px;
+text-align: center;
+z-index: 1000;
+}
+
+/* The Robo */
+.robo {
+width: 80px;
+height: 80px;
+background: linear-gradient(135deg, #6c63ff, #00d4ff);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2rem;
+color: white;
+cursor: pointer;
+animation: idle 3s infinite;
+transition: transform 0.3s;
+}
+
+.robo:hover {
+transform: scale(1.1);
+}
+
+/* Actions */
+.robo.jump { animation: jump 1s ease; }
+.robo.wave { animation: wave 2s ease; }
+.robo.dance { animation: dance 2s infinite; }
+.robo.sleep { animation: sleep 4s infinite; }
+.robo.fly { animation: fly 3s ease; }
+.robo.gym { animation: gym 2s infinite; }
+.robo.study { animation: study 2s infinite; }
+.robo.cycle { animation: cycle 3s infinite linear; }
+.robo.moonwalk { animation: moonwalk 5s infinite linear; }
+
+/* Animations */
+@keyframes idle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes jump { 0% { transform: translateY(0); } 50% { transform: translateY(-50px); } 100% { transform: translateY(0); } }
+@keyframes wave { 0% { transform: rotate(0deg); } 25% { transform: rotate(20deg); } 75% { transform: rotate(-20deg); } 100% { transform: rotate(0deg); } }
+@keyframes dance { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(15deg); } 50% { transform: rotate(-15deg); } 75% { transform: rotate(15deg); } }
+@keyframes sleep { 0%, 100% { transform: scale(1); } 50% { transform: scale(0.9); opacity: 0.6; } }
+@keyframes fly { 0% { transform: translateY(0); } 50% { transform: translateY(-80px); } 100% { transform: translateY(0); } }
+@keyframes gym { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+@keyframes study { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(5deg); } }
+@keyframes cycle { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes moonwalk { 0% { transform: translateX(0); } 100% { transform: translateX(-100px); } }
