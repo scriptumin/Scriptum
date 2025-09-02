@@ -1,5 +1,7 @@
 
-/* ==== robo.css (final version with ALL actions) ==== */
+/* ==========================
+Robo Styles
+========================== */
 
 /* Container */
 .robo-container {
@@ -10,7 +12,7 @@ text-align: center;
 z-index: 1000;
 }
 
-/* Base Robo */
+/* Robo */
 .robo {
 width: 80px;
 height: 80px;
@@ -24,36 +26,169 @@ color: white;
 cursor: pointer;
 animation: idle 3s infinite;
 transition: transform 0.3s;
+box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
+
 .robo:hover {
 transform: scale(1.1);
 }
 
-/* ==== ACTION STATES ==== */
+/* Robo Menu */
+.robo-menu {
+margin-top: 10px;
+display: flex;
+flex-wrap: wrap;
+gap: 6px;
+background: white;
+padding: 10px;
+border-radius: 8px;
+box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.robo-menu-item {
+padding: 5px 10px;
+border: none;
+border-radius: 6px;
+background: #6c63ff;
+color: white;
+cursor: pointer;
+font-size: 0.8rem;
+transition: 0.2s;
+}
+
+.robo-menu-item:hover {
+background: #00d4ff;
+}
+
+.robo-menu-item.hide {
+background: #e63946;
+}
+
+.robo-toggle {
+position: fixed;
+bottom: 20px;
+right: 20px;
+background: #6c63ff;
+color: white;
+border: none;
+padding: 10px 15px;
+border-radius: 6px;
+cursor: pointer;
+}
+
+/* ==========================
+Robo Animations
+========================== */
+@keyframes idle {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-3px); }
+}
+
+@keyframes jump {
+0% { transform: translateY(0); }
+50% { transform: translateY(-50px); }
+100% { transform: translateY(0); }
+}
+
+@keyframes wave {
+0%, 100% { transform: rotate(0deg); }
+25% { transform: rotate(20deg); }
+75% { transform: rotate(-20deg); }
+}
+
+@keyframes dance {
+0%, 100% { transform: rotate(0); }
+25% { transform: rotate(15deg); }
+50% { transform: rotate(-15deg); }
+75% { transform: rotate(15deg); }
+}
+
+@keyframes sleep {
+0%, 100% { transform: scale(1); opacity: 1; }
+50% { transform: scale(0.8); opacity: 0.5; }
+}
+
+@keyframes fly {
+0% { transform: translateY(0); }
+50% { transform: translateY(-80px) rotate(20deg); }
+100% { transform: translateY(0); }
+}
+
+@keyframes gym {
+0%, 100% { transform: scale(1); }
+50% { transform: scale(1.3); }
+}
+
+@keyframes study {
+0%, 100% { transform: rotate(0); }
+50% { transform: rotate(5deg); }
+}
+
+@keyframes cycle {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+@keyframes moonwalk {
+0% { transform: translateX(0); }
+100% { transform: translateX(-100px); }
+}
+
+@keyframes spin {
+0% { transform: rotate(0); }
+100% { transform: rotate(720deg); }
+}
+
+@keyframes stretch {
+0%, 100% { transform: scale(1); }
+50% { transform: scale(1.2, 0.8); }
+}
+
+@keyframes yoga {
+0%, 100% { transform: rotate(0) scale(1); }
+50% { transform: rotate(10deg) scale(0.9); }
+}
+
+@keyframes salute {
+0% { transform: rotate(0); }
+50% { transform: rotate(-30deg); }
+100% { transform: rotate(0); }
+}
+
+@keyframes dab {
+0% { transform: rotate(0); }
+50% { transform: rotate(-45deg) scale(1.1); }
+100% { transform: rotate(0); }
+}
+
+@keyframes shuffle {
+0% { transform: translateX(0); }
+25% { transform: translateX(15px); }
+50% { transform: translateX(-15px); }
+75% { transform: translateX(10px); }
+100% { transform: translateX(0); }
+}
+
+@keyframes robotWalk {
+0% { transform: translateX(0); }
+50% { transform: translateX(50px); }
+100% { transform: translateX(0); }
+}
+
+/* Apply animations */
 .robo.jump { animation: jump 1s ease; }
 .robo.wave { animation: wave 2s ease; }
 .robo.dance { animation: dance 2s infinite; }
 .robo.sleep { animation: sleep 4s infinite; }
-.robo.fly { animation: fly 3s ease-in-out infinite; }
+.robo.fly { animation: fly 3s ease; }
 .robo.gym { animation: gym 2s infinite; }
 .robo.study { animation: study 2s infinite; }
 .robo.cycle { animation: cycle 3s infinite linear; }
 .robo.moonwalk { animation: moonwalk 5s infinite linear; }
-.robo.paint { animation: paint 2s infinite; }
-.robo.code { animation: code 1s steps(2, end) infinite; }
-.robo.shower { animation: shower 3s infinite; }
-
-/* ==== KEYFRAMES ==== */
-@keyframes idle { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-3px);} }
-@keyframes jump { 0% { transform: translateY(0);} 50% { transform: translateY(-50px);} 100% { transform: translateY(0);} }
-@keyframes wave { 0% { transform: rotate(0);} 25% { transform: rotate(20deg);} 75% { transform: rotate(-20deg);} 100% { transform: rotate(0);} }
-@keyframes dance { 0%,100% { transform: rotate(0);} 25% { transform: rotate(15deg);} 50% { transform: rotate(-15deg);} 75% { transform: rotate(15deg);} }
-@keyframes sleep { 0%,100% { transform: scale(1);} 50% { transform: scale(0.9); opacity: 0.6;} }
-@keyframes fly { 0% { transform: translateY(0);} 50% { transform: translateY(-80px);} 100% { transform: translateY(0);} }
-@keyframes gym { 0%,100% { transform: scale(1);} 50% { transform: scale(1.3);} }
-@keyframes study { 0%,100% { transform: rotate(0);} 50% { transform: rotate(5deg);} }
-@keyframes cycle { 0% { transform: rotate(0);} 100% { transform: rotate(360deg);} }
-@keyframes moonwalk { 0% { transform: translateX(0);} 100% { transform: translateX(-100px);} }
-@keyframes paint { 0% { filter: hue-rotate(0);} 100% { filter: hue-rotate(360deg);} }
-@keyframes code { 0% { filter: brightness(100%);} 50% { filter: brightness(70%);} 100% { filter: brightness(100%);} }
-@keyframes shower { 0%,100% { opacity: 1;} 50% { opacity: 0.6;} }
+.robo.spin { animation: spin 2s linear; }
+.robo.stretch { animation: stretch 2s ease; }
+.robo.yoga { animation: yoga 3s infinite; }
+.robo.salute { animation: salute 1.5s ease; }
+.robo.dab { animation: dab 1.5s ease; }
+.robo.shuffle { animation: shuffle 2s infinite; }
+.robo.robotWalk { animation: robotWalk 4s infinite; }
